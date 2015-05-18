@@ -1,0 +1,62 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="IPetMapper">
+	<resultMap id="petResultMap" type="com.epam.kharkiv.vet.domain.pet.Pet"
+		extends="identifiable.identifiableResultMap">
+		<result property="monicker" javaType="java.lang.String" column="monicker" />
+		<result property="age" javaType="int" column="age" />
+		<result property="species" javaType="com.epam.kharkiv.vet.domain.enumeration.ESpecies" column="species" />
+        <association property="petOwner" select="IPetOwnerMapper.get" column="owner_id"/>
+	</resultMap>
+
+	<sql id="tableName">pet</sql>
+    
+    <sql id="primaryKey">id</sql>
+
+	<select id="get" resultMap="petResultMap" parameterType="java.lang.String">
+		<include refid="abstract.getPattern" />
+	</select>
+
+	<select id="getList" resultMap="petResultMap">
+		<include refid="abstract.getListPattern" />
+	</select>
+
+	<insert id="insert" parameterType="Pet">
+		<include refid="abstract.insertPattern" />
+	</insert>
+
+	<update id="update" parameterType="Pet">
+		<include refid="abstract.updatePattern" />
+	</update>
+
+	<delete id="delete" parameterType="String">
+		<include refid="abstract.deletePattern" />
+	</delete>
+
+	<sql id="insertFields">
+		<include refid="identifiable.identifiableInsertFields" />,
+		moniker,
+		owner_id,
+		age,
+		species
+	</sql>
+
+	<sql id="insertValues">
+		<include refid="identifiable.identifiableInsertValues" />,
+		#{moniker},
+		#{petOwner.id},
+		#{age},
+		#{species}
+	</sql>
+
+	<sql id="updateEquations">
+		<include refid="identifiable.identifiableUpdateEquations" />,
+		moniker = #{moniker},
+		owner_id = #{petOwner.id},
+		age = #{age},
+		species = #{species}
+	</sql>
+
+</mapper>

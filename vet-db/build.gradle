@@ -1,0 +1,8 @@
+sourceSets{
+    main { resources { srcDir 'src/main/liquibase' } }
+    test{ resources { srcDir  'src/test/liquibase' } }
+}
+dependencies{
+    compile "net.saliman:groovy-liquibase-dsl:1.0.0"
+    compile "org.liquibase:liquibase-core:3.1.1"
+}

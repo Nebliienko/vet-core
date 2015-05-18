@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties>
+        <property name="schema" value="apps" />
+    </properties>
+    
+        <settings>
+        <setting name="cacheEnabled" value="true" />
+        <setting name="lazyLoadingEnabled" value="false" />
+        <setting name="localCacheScope" value="STATEMENT" />
+        <setting name="multipleResultSetsEnabled" value="true" />
+        <setting name="useColumnLabel" value="true" />
+        <setting name="useGeneratedKeys" value="false" />
+        <setting name="autoMappingBehavior" value="PARTIAL" />
+        <setting name="defaultExecutorType" value="SIMPLE" />
+        <setting name="defaultStatementTimeout" value="25" />
+        <setting name="safeRowBoundsEnabled" value="false" />
+        <setting name="mapUnderscoreToCamelCase" value="false" />
+        <setting name="jdbcTypeForNull" value="OTHER" />
+    </settings>
+     
+    <typeAliases>
+        <typeAlias alias="petOwner" type="com.epam.kharkiv.vet.repository.person.PetOwnerRepository" /> 
+        <typeAlias alias="veterinary" type="com.epam.kharkiv.vet.repository.person.VeterinaryRepository" />
+        <typeAlias alias="pet" type="com.epam.kharkiv.vet.repository.pet.PetRepository" />
+        <typeAlias alias="visitHistory" type="com.epam.kharkiv.vet.repository.pet.VisitHistoryRepository" />
+    </typeAliases>
+    <mappers>
+        <mapper resource="com/epam/kharkiv/vet/repository/mybatis/resultmap/IdentifiableResultMap.xml" />
+        <mapper resource="com/epam/kharkiv/vet/repository/mybatis/resultmap/PersonResultMap.xml" />
+        <mapper resource="com/epam/kharkiv/vet/repository/mybatis/mapper/AbstractMapper.xml" />
+        <mapper resource="com/epam/kharkiv/vet/repository/mybatis/mapper/IPetMapper.xml" />
+        <mapper resource="com/epam/kharkiv/vet/repository/mybatis/mapper/IPetOwnerMapper.xml" />
+        <mapper resource="com/epam/kharkiv/vet/repository/mybatis/mapper/IVeterinaryMapper.xml" />
+        <mapper resource="com/epam/kharkiv/vet/repository/mybatis/mapper/IVisitHistoryMapper.xml" />
+    </mappers>
+</configuration>

@@ -1,0 +1,51 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="IPetOwnerMapper">
+	<resultMap id="petOwnerResultMap"
+		type="com.epam.kharkiv.vet.domain.person.petowner.PetOwner" extends="person.personResultMap">
+		<result property="email" javaType="java.lang.String" column="email" />
+	</resultMap>
+
+	<sql id="tableName">pet_owner</sql>
+    
+    <sql id="primaryKey">id</sql>
+
+	<select id="get" resultMap="petOwnerResultMap"
+		parameterType="java.lang.String">
+		<include refid="abstract.getPattern" />
+	</select>
+
+	<select id="getList" resultMap="petOwnerResultMap">
+		<include refid="abstract.getListPattern" />
+	</select>
+
+	<insert id="insert" parameterType="PetOwner">
+		<include refid="abstract.insertPattern" />
+	</insert>
+
+	<update id="update" parameterType="PetOwner">
+		<include refid="abstract.updatePattern" />
+	</update>
+
+	<delete id="delete" parameterType="String">
+		<include refid="abstract.deletePattern" />
+	</delete>
+
+	<sql id="insertFields">
+	<include refid="person.personInsertFields"/>,
+	email
+	</sql>
+
+	<sql id="insertValues">
+	<include refid="person.personInsertValues"/>,
+	#{email}
+	</sql>
+
+	<sql id="updateEquations">
+	<include refid="person.personUpdateEquations"/>,
+	email = #{email}
+	</sql>
+
+</mapper>

@@ -1,0 +1,30 @@
+sourceSets {
+    testIntegration {
+        java.srcDir file('src/testIntegration/java')
+        resources.srcDir file('src/testIntegration/resources')
+    }
+}
+
+task testIntegration(type: Test) {
+    testClassesDir = sourceSets.testIntegration.output.classesDir
+    classpath = sourceSets.testIntegration.runtimeClasspath
+}
+apply plugin: 'jetty'
+jettyRun.httpPort = 9500
+
+dependencies{
+
+    compile project(':vet-rest-api')
+    compile project(':vet-service')
+    compile project(':vet-repository')
+    
+    compile 'org.springframework.integration:spring-integration-groovy:4.0.4.RELEASE'
+    compile 'org.springframework:spring-webmvc:4.1.1.RELEASE'
+    compile 'org.springframework:spring-jdbc:4.1.1.RELEASE'
+    compile 'org.springframework.security:spring-security-core:3.2.5.RELEASE'
+    compile 'org.springframework.security:spring-security-web:3.2.5.RELEASE'
+    compile 'org.springframework.security:spring-security-config:3.2.5.RELEASE'
+
+    compile 'jstl:jstl:1.2'
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
+}

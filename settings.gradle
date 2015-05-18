@@ -1,0 +1,9 @@
+rootProject.name='vet-core'
+
+include 'vet-api'
+include 'vet-rest-api'
+include 'vet-domain'
+include 'vet-repository'
+include 'vet-service'
+include 'vet-db'
+include 'vet-rest'

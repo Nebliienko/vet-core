@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="TestAll">
+    <test name="successfulConditionsTests" parallel="instance" thread-count="5">
+
+        <groups>
+            <run>
+                <include name="successfulScenarioTestGroup" />
+            </run>
+        </groups>
+
+        <packages>
+            <package name="com.epam.kharkiv.vet.service.person"/>
+            <package name="com.epam.kharkiv.vet.service.pet"/>
+            <package name="com.epam.kharkiv.vet.repository.person"/>
+            <package name="com.epam.kharkiv.vet.repository.pet"/>
+        </packages>
+
+    </test>
+    <test name="failConditionsTests">
+
+        <groups>
+            <run>
+                <include name="failScenarioTestGroup" />
+            </run>
+        </groups>
+
+        <packages>
+            <package name="com.epam.kharkiv.vet.service.person"/>
+            <package name="com.epam.kharkiv.vet.service.pet"/>
+            <package name="com.epam.kharkiv.vet.repository.person"/>
+            <package name="com.epam.kharkiv.vet.repository.pet"/>
+        </packages>
+
+    </test>
+</suite>

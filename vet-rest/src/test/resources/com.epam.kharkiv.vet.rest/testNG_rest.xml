@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="RestTest" parallel="classes" thread-count="5">
+    <test name="petOwnerRepositoryTest">
+        <classes>
+            <class name="com.epam.kharkiv.vet.rest.PetOwnerRestTest" />
+        </classes>
+    </test>
+    <test name="petRepositoryTest">
+        <classes>
+            <class name="com.epam.kharkiv.vet.rest.PetRestTest" />
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,12 @@
+dependencies {
+    compile project (':vet-db')
+    compile project (':vet-api')
+    compile project (':vet-service')
+    compile ('org.mybatis:mybatis:3.2.7')
+    compile ('org.springframework:spring-jdbc:4.1.1.RELEASE')
+    compile ('com.h2database:h2:1.4.182')
+    compile ('org.mybatis:mybatis-spring:1.2.2'){
+        transitive=true
+    }
+}
+

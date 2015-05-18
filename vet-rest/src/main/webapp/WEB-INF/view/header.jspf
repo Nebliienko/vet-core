@@ -1,0 +1,4 @@
+<a href="/vet-rest/pet/get">Pet List</a>&nbsp
+<a href="/vet-rest/pet_owner/get">Pet Owners List</a>&nbsp
+<a href="/vet-rest/veterinary/get">Veterinary List</a>&nbsp
+<a href="/vet-rest/login">Login</a>

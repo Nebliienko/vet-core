@@ -1,0 +1,33 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="person">
+
+    <resultMap type="com.epam.kharkiv.vet.domain.person.Person" id="personResultMap" extends="identifiable.identifiableResultMap">
+        <result property="name" column="name" />
+        <result property="surname" column="surname" />
+        <result property="age" column="age" />
+    </resultMap>
+	
+	<sql id="personInsertFields">
+		<include refid="identifiable.identifiableInsertFields" />,
+		name,
+		surname,
+		age
+	</sql>
+	
+	<sql id="personInsertValues">
+		<include refid="identifiable.identifiableInsertValues" />,
+		#{name},
+		#{surname},
+		#{age}
+	</sql>
+	
+	<sql id="personUpdateEquations">
+		<include refid="identifiable.identifiableUpdateEquations" />,
+		name = #{name},
+		surname = #{surname},
+		age = #{age}
+	</sql>
+
+</mapper>

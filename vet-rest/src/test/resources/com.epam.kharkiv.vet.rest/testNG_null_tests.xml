@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="TestAll">
+    <test name="successfulConditionsTests" parallel="instance" thread-count="5">
+
+<method-selectors>
+    <method-selector>
+        <script language="beanshell" ><![CDATA[
+                method.getName().contains("Null")
+                    ]]></script>
+    </method-selector>
+
+</method-selectors>
+        <packages>
+            <package name="com.epam.kharkiv.vet.service.person"/>
+            <package name="com.epam.kharkiv.vet.service.pet"/>
+            <package name="com.epam.kharkiv.vet.repository.person"/>
+            <package name="com.epam.kharkiv.vet.repository.pet"/>
+        </packages>
+
+    </test>
+
+</suite>

@@ -1,0 +1,73 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="IVisitHistoryMapper">
+	<resultMap id="visitHistoryResultMap"
+		type="com.epam.kharkiv.vet.domain.pet.visit.VisitHistory" extends="identifiable.identifiableResultMap">
+		<result property="reason" javaType="java.lang.String" column="reason"/>
+		<result property="visitTime" javaType="java.util.Date" column="visit_time"/>
+		<result property="information" javaType="java.lang.String" column="information"/>
+        <association property="pet" select="IPetMapper.get" column="pet_id"/>
+        <association property="veterinary" select="IVeterinaryMapper.get" column="veterinary_id"/>
+	</resultMap>
+
+	<sql id="tableName">visit_history</sql>
+    
+    <sql id="primaryKey">id</sql>
+
+	<select id="get" resultMap="visitHistoryResultMap"
+		parameterType="java.lang.String">
+		<include refid="abstract.getPattern" />
+	</select>
+
+	<select id="getList" resultMap="visitHistoryResultMap">
+	<include refid="abstract.getListPattern" />
+</select>
+
+	<insert id="insert" parameterType="VisitHistory">
+		<include refid="abstract.insertPattern" />
+	</insert>
+
+	<update id="update" parameterType="VisitHistory">
+		<include refid="abstract.updatePattern" />
+	</update>
+
+	<delete id="delete" parameterType="String">
+		<include refid="abstract.deletePattern" />
+	</delete>
+
+	<sql id="insertFields">
+		<include refid="identifiable.identifiableInsertFields" />,
+		veterinary_id,
+		pet_id,
+		reason,
+		visit_time,
+		information
+	</sql>
+
+	<sql id="insertValues">
+		<include refid="identifiable.identifiableInsertValues" />,
+		#{veterinary.id},
+		#{pet.id},
+		#{reason},
+		#{visitTime},
+		#{information}
+	</sql>
+
+	<sql id="updateEquations">
+		<include refid="identifiable.identifiableUpdateEquations" />,
+		veterinary_id = #{veterinary.id},
+		pet_id = #{pet.id},
+		reason = #{reason},
+		visit_time = #{visitTime},
+		information = #{information}
+	</sql>
+	
+	<select id="getByPetId" resultMap="visitHistoryResultMap"
+        parameterType="java.lang.String">
+        <include refid="abstract.getListPattern" />
+        WHERE pet_id=#{petId}
+    </select>
+
+</mapper>

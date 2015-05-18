@@ -1,0 +1,51 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="IVeterinaryMapper">
+	<resultMap id="veterinaryResultMap"
+		type="com.epam.kharkiv.vet.domain.person.veterinary.Veterinary" extends="person.personResultMap">
+		<result property="specialization" javaType="com.epam.kharkiv.vet.domain.enumeration.ESpecialization" column="specialization" />
+	</resultMap>
+
+	<sql id="tableName">veterinary</sql>
+    
+    <sql id="primaryKey">id</sql>
+
+	<select id="get" resultMap="veterinaryResultMap"
+		parameterType="java.lang.String">
+		<include refid="abstract.getPattern" />
+	</select>
+
+	<select id="getList" resultMap="veterinaryResultMap">
+		<include refid="abstract.getListPattern" />
+	</select>
+
+	<insert id="insert" parameterType="Veterinary">
+		<include refid="abstract.insertPattern" />
+	</insert>
+
+	<update id="update" parameterType="Veterinary">
+		<include refid="abstract.updatePattern" />
+	</update>
+
+	<delete id="delete" parameterType="String">
+		<include refid="abstract.deletePattern" />
+	</delete>
+
+	<sql id="insertFields">
+	<include refid="person.personInsertFields"/>,
+	specialization
+	</sql>
+
+	<sql id="insertValues">
+	<include refid="person.personInsertValues"/>,
+	#{specialization}
+	</sql>
+
+	<sql id="updateEquations">
+	<include refid="person.personUpdateEquations"/>,
+	specialization = #{specialization}
+	</sql>
+
+</mapper>

@@ -1,0 +1,43 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="abstract">
+
+	<sql id="getPattern">
+		SELECT *
+		FROM ${schema}.<include refid="tableName" />
+		<include refid="abstract.where_id_string" />
+	</sql>
+
+    <sql id="getListPattern">
+        SELECT *
+        FROM ${schema}.<include refid="tableName" />
+    </sql>
+    
+	<sql id="deletePattern">
+		DELETE
+		FROM ${schema}.<include refid="tableName" />
+		<include refid="abstract.where_id_string" />
+	</sql>
+
+	<sql id="insertPattern">
+		INSERT INTO
+		${schema}.<include refid="tableName" />
+		(<include refid="insertFields" />)
+		VALUES
+		(<include refid="insertValues" />)
+	</sql>
+
+	<sql id="updatePattern">
+		UPDATE
+		${schema}.<include refid="tableName" />
+		SET
+		<include refid="updateEquations" />
+		<include refid="abstract.where_id_string" />
+	</sql>
+
+	<sql id="where_id_string">
+		WHERE <include refid="primaryKey" /> = #{id}
+	</sql>
+    
+</mapper>
